@@ -2,18 +2,22 @@
     const guessedWords = [[]]; //collects are the words in an array, each word will contain an array that contains each letter
     const keys = document.querySelectorAll(".keyboard-row button");
     const word = "DREAM";
-    let currentWordArr = []
+    let currentLettersArr = []
 
     // iterate over each key and add an onclick handler 
     for (let i = 0; i < keys.length; i++) {
         keys[i].onclick = ({ target }) => { // target gets our actual letter
             const letter = target.textContent;
-            console.log(letter)
+            
+            const currentRow = guessedWords.length - 1;
 
-            if (letter ==='Enter') {
-                handleSubmitWord()
-                return; 
-            }
+            if (guessedWords[currentRow].length === 5) {
+                if (letter === 'Enter') {
+                    handleSubmitWord()
+                }
+
+               return; 
+            } 
 
             if (letter ==='Del') {
                 console.log('Del')
@@ -30,9 +34,10 @@
         const currentRow = guessedWords.length - 1; //returns the actual array that we're updating 
         const currentLetters = guessedWords[currentRow].length;
 
+
         if (currentLetters < 5) {
             return guessedWords[currentRow];
-        }
+        } 
 
         guessedWords.push([])
         return guessedWords[currentRow + 1];
@@ -40,13 +45,14 @@
 
      
     function updateGuessedWords(letter) {
-        let currentWordArr = getCurrentWordArr();
+        let currentLettersArr = getCurrentWordArr();
 
-        if(currentWordArr && currentWordArr.length < 5) {
-            currentWordArr.push(letter)
+        if(currentLettersArr && currentLettersArr.length < 5) {
+            currentLettersArr.push(letter)
+            console.log(currentLettersArr)
 
             const row = guessedWords.length - 1
-            const column = currentWordArr.length - 1; 
+            const column = currentLettersArr.length - 1; 
 
             const availableSpace = document.getElementById(row + '-' + column); // lets us know if the 'tiles' are available
             availableSpace.textContent = letter; 
@@ -54,17 +60,43 @@
     } 
 
     function handleSubmitWord() {
-        let currentWordArr = getCurrentWordArr()
-        console.log(currentWordArr.length)
-        if (currentWordArr.length < 4) {
-            alert("Need more letters");
-        } 
+        let currentLettersArr = guessedWords[guessedWords.length - 1]
+        console.log(currentLettersArr)
 
-        const currentWord = currentWordArr.join('') 
+        //const currentWord = currentLettersArr.join('') 
 
-        if (currentWord === word) {
-            alert("Congratulations!")
-        }
+       let answerLetters = word.split('')
+       console.log(answerLetters)
+       
+       const row = guessedWords.length - 1 
+       
 
-    }
+       for (let i = 0; i < currentLettersArr.length; i++) {
+            const letterSpace = document.getElementById(row + '-' + i);
+
+            if (answerLetters[i] === currentLettersArr[i]) { 
+                letterSpace.classList.add('correct')
+            } else if (answerLetters.includes(currentLettersArr[i])) {
+                letterSpace.classList.add('present')
+
+            } else {
+            letterSpace.classList.add('absent') 
+            } 
+           
+       }
+
+       
+
+
+
+       }
+
+    
+
+
+    // seperate function 
+
+    //if (currentWord === word) {
+        //alert("Congratulations!")
+    //}
      
