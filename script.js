@@ -106,23 +106,11 @@
 
        }
 
-    //function handleDeleteLetter() {
+    function handleDeleteLetter() {
 
-        //const currentLettersArr = getCurrentWordArr()
-        //const removedLetter = getCurrentWordArr.pop()
-    //}
+        let currentLettersArr = getCurrentWordArr() 
+        const removedLetter = getCurrentWordArr.length.slice(0,-1);
+        
+    }
 
-    //move on to the next line, 
-    //what happens when it moves to the next row 
-    //delete function (what happens something .length) 
-    //win condition 
-
-
-
-
-    // seperate function 
-
-    //if (currentWord === word) {
-        //alert("Congratulations!")
-    //}
-     
+    
