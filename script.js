@@ -108,9 +108,9 @@
 
     function handleDeleteLetter() {
 
-        let currentLettersArr = getCurrentWordArr() 
-        const removedLetter = getCurrentWordArr.length.slice(0,-1);
-        
+        let currentLettersArr = getCurrentWordArr().pop()
+        console.log(currentLettersArr)
+
     }
 
     
