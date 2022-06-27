@@ -25,7 +25,7 @@
             } 
 
 
-            if (letter ==='Delete') {
+            if (letter ==='Del') {
                 handleDeleteLetter() 
                 return;
             } 
@@ -108,8 +108,8 @@
 
     function handleDeleteLetter() {
 
-        let currentLettersArr = getCurrentWordArr().pop()
-        console.log(currentLettersArr)
+        const currentLettersArr = getCurrentWordArr() 
+        currentLettersArr.pop();
 
     }
 
